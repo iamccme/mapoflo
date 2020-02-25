@@ -1,0 +1,32 @@
+# READ ME
+
+## packages needed
+
+* python 3.6.4
+* torch 1.4.0
+* numpy 1.17
+
+## data preparation
+
+1. download data from https://tianchi.aliyun.com/dataset/dataDetail?dataId=52424
+2. put all files in data_open_source directory
+3. unzip all *.pv.*.zip
+4. sample 10% of each *.pv.*.txt and named as ${DATE}.sample.pv.txt, e.g. sample 10% of 2019-05-17.pv.txt and name the result as 2019-05-17.sample.pv.txt
+
+## model training
+
+1. change the configurations in config.py
+    * set the PUBID (publisher ID) of training dataset
+    * TRAIN_DATE_PERIOD for the date of training
+        * e.g. 'TRAIN_DATE_PERIOD = ["2019-05-17"]' means fetching the demands in 2019-05-18 and impressions in 2019-05-17.
+2. run `python3 main.py`
+3. the logs are stored in logs/ and the models are stored in models/
+
+## model testing
+
+1. change the configurations in config.py
+    * set IS_TESTING to True
+    * set IS_TESTING_FLAG to the model directory name in models/, e.g., "260_0.98"
+    * set the PUBID (publisher ID) of the testing dataset
+    * set the testing date in TRAIN_DATE_PERIOD.
+        * e.g. 'TRAIN_DATE_PERIOD = ["2019-05-17"]' means fetching the demands and impressions in 2019-05-17.
